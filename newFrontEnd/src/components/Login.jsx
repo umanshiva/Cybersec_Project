@@ -16,7 +16,7 @@ function Login() {
         setError("")
 
         try {
-            session = 1
+            let session = 1
 
             if(session){
 
@@ -25,7 +25,7 @@ function Login() {
 
                 // and then navigate to home page
                 // when u use navigate it automatically navigates to the link but if u use link then u have to click something to go there
-                navigate('/')
+                navigate('/dashboard')
             }
         } catch (error) {
             setError(error.message)

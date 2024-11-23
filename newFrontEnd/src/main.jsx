@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import {Login, Home} from './pages'
+import {Login, Home, Dashboard} from './pages'
 
 const router = createBrowserRouter([
     {
@@ -20,6 +20,12 @@ const router = createBrowserRouter([
                       <Login />
               ),
           },
+          {
+            path: "/dashboard",
+            element: (
+                    <Dashboard />
+            ),
+        },
       ],
     },
   ])
