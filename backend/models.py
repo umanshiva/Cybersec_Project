@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, DateTime
 from database import Base
-from database import engine
+from datetime import datetime
 
 class User(Base):
     __tablename__ = "users"
@@ -9,6 +9,17 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
 
-# Create the database tables if they don't exist
+class POSLog(Base):
+    __tablename__ = "pos_logs"
 
-User.metadata.create_all(bind=engine)
+    id = Column(Integer, primary_key=True, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    transaction_id = Column(String, unique=True, index=True)
+    duration_time = Column(Float)
+    item_code = Column(String)
+    amount = Column(Float)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    payment_method = Column(String)
+    is_anomalous = Column(Boolean, default=False)
+
+    __table_args__ = {"extend_existing": True}
